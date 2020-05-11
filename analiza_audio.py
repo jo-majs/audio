@@ -18,11 +18,11 @@ def choose_recording():
     return choice
     
 option = choose_recording()
-material = 'default'
+material = 'blad'
 
 #nowe nagranie
 if option == 'nowe_nagranie':
-    print("Nagrywam 10s")
+    print("Nagrywam 10s, uderz w pret kilka razy")
     rec = ra.Recorder(channels = 2)
     with rec.open('new_recording.wav', 'wb') as recfile:
         recfile.record(duration = 10.0)
@@ -40,23 +40,26 @@ if option == 'nowe_nagranie':
 if option == 'aluminium':
     # parametry aluminium:
     young = 70.0 * 10**9 # [Pa]
-    density = 2710.0 # [kg/m^3]
+    density = 2710.0 # [kg/m^3]nowe_
+    title = 'nowy'
     #parametry pręta z nagrania:
     if material != option:
         thickness = 0.0075 # [m]
         length = 0.41 # [m]
+        title = option
         file_path = 'aluminium.wav'
-
 
 #parametry pręta stalowego     
 if option == 'stal':
     #parametry stali:
     young = 180.0 * 10**9 # [Pa]
     density = 8050.0 # [kg/m^3]
+    title = 'nowy'
     #parametry pręta z nagrania:
     if material != option:
         thickness = 0.0075 # [m]
         length = 0.27 # [m]
+        title = option
         file_path = 'steel.wav'
 
 
@@ -107,7 +110,7 @@ for f in mods:
     plt.annotate("{:.1f}".format(f), xy = (f,0), xytext = (f, 0.0004), color = 'b', ha = 'center', size = 'small')    
 legend = b.legend(loc='upper left', shadow = True)
 
-plt.savefig(option, dpi = 150)
+plt.savefig(title, dpi = 150)
 
 
 
